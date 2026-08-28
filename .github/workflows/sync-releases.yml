@@ -1,0 +1,16 @@
+name: Sync Upstream Releases
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Releases
+        uses: andrewthetechie/gha-clone-releases@v1
+        with:
+          token: ${{ secrets.SYNC_TOKEN }}
+          src_repo: yhirose/cpp-httplib
